@@ -3,9 +3,8 @@
 const config = require('../config')
 const app = require('..')
 const port = config.get('port') || 3000
-const host = config.get('host') || 'localhost'
 
-const server = app.listen(port, host, () => {
+const server = app.listen(port, () => {
   const info = server.address()
   console.log('Server listening at %s:%s', info.address, info.port)
 })
