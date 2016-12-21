@@ -1,0 +1,33 @@
+{
+  "name": "lyfee",
+  "version": "0.0.0",
+  "description": "My life application management",
+  "main": "index.js",
+  "scripts": {
+    "start": "node bin/start",
+    "start:watch": "nodemon bin/start",
+    "test": "npm run test:e2e",
+    "test:e2e": "mocha --recursive e2e/",
+    "test:e2e:watch": "mocha --watch --recursive e2e/"
+  },
+  "author": "Simon RENOULT <simon.renoult@gmail.com>",
+  "license": "MIT",
+  "dependencies": {
+    "body-parser": "^1.15.2",
+    "express": "^4.14.0",
+    "helmet": "^3.1.0",
+    "nconf": "^0.8.4",
+    "shortid": "^2.2.6"
+  },
+  "devDependencies": {
+    "chai": "^3.5.0",
+    "eslint": "^3.12.2",
+    "eslint-config-standard": "^6.2.1",
+    "eslint-plugin-promise": "^3.4.0",
+    "eslint-plugin-standard": "^2.0.1",
+    "faker": "^3.1.0",
+    "mocha": "^3.2.0",
+    "nodemon": "^1.11.0",
+    "supertest": "^2.0.1"
+  }
+}
