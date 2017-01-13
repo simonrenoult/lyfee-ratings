@@ -30,10 +30,16 @@ app.put('/ratings/:id', (req, res) => {
   const id = req.params.id
   const rating = ratings.find(rating => rating.id === id)
   if (!rating) return res.sendStatus(404)
+
+  if (!req.body.rating) return res.sendStatus(400)
+  if (!req.body.type) return res.sendStatus(400)
+  if (!req.body.name) return res.sendStatus(400)
+
   ratings = ratings.map(rating => {
     if (rating.id !== id) return rating
     return Object.assign(rating, req.body)
   })
+
   res.location(`/ratings/${id}`).sendStatus(204)
 })
 

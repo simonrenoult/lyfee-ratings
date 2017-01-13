@@ -1,7 +1,7 @@
 exports.rating = () => {
   return {
     type: 'book',
-    rate: 7,
+    rating: 7,
     name: 'Vivants'
   }
 }

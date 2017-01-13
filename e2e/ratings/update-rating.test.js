@@ -17,12 +17,53 @@ describe('PUT /ratings/:id', () => {
       id = location.match(/\/ratings\/(.+)/)[1]
     }))
 
+    context('when the field rating is missing', () => {
+      const rating = fixtures.rating()
+      delete rating.rating
+      it('returns 400', () => {
+        return requester
+          .put(location)
+          .send(rating)
+          .expect(400)
+      })
+    })
+
+    context('when the field name is missing', () => {
+      const rating = fixtures.rating()
+      delete rating.name
+      it('returns 400', () => {
+        return requester
+          .put(location)
+          .send(rating)
+          .expect(400)
+      })
+    })
+
+    context('when the field type is missing', () => {
+      const rating = fixtures.rating()
+      delete rating.type
+      it('returns 400', () => {
+        return requester
+          .put(location)
+          .send(rating)
+          .expect(400)
+      })
+    })
+
     it('returns 204', () => {
-      return requester.put(location).expect(204)
+      const rating = fixtures.rating()
+      return requester
+        .put(location)
+        .send(rating)
+        .expect(204)
     })
 
     it('returns the resource location', () => {
-      return requester.put(location).expect('Location', /\/ratings\/.+/)
+      const rating = fixtures.rating()
+      return requester
+        .put(location)
+        .send(rating)
+        .expect('Location', /\/ratings\/.+/)
     })
 
     it('updates the rating', () => {
