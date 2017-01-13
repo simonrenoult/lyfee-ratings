@@ -1,4 +1,5 @@
 const requester = require('./helpers').requester
+const pkg = require('../package')
 
 describe('GET /', () => {
   it('returns 200', () => {
@@ -6,9 +7,9 @@ describe('GET /', () => {
       .get('/')
       .expect(200)
   })
-  it('returns "Hello Lyfeee"', () => {
+  it('returns "<pkg-name>:<pkg-version>"', () => {
     return requester
       .get('/')
-      .expect('Hello Lyfeee')
+      .expect(`${pkg.name}:${pkg.version}`)
   })
 })

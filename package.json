@@ -1,7 +1,7 @@
 {
-  "name": "lyfee",
-  "version": "0.0.0",
-  "description": "My life application management",
+  "name": "lyfee-rating",
+  "version": "0.0.1",
+  "description": "Ratings API",
   "main": "index.js",
   "scripts": {
     "start": "node bin/start",

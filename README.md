@@ -1,6 +1,6 @@
-# Lyfee
+# Lyfee Ratings
 
-> Myfe life application management
+> Ratings API
 
 ## Install
 
@@ -19,12 +19,3 @@ $ npm test
 ```
 $ npm start
 ```
-
-## Features
-
-* Rating
-* Budget
-* Notes for OCTO 360
-* Blog
-* Contact form
-* Track health

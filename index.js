@@ -2,6 +2,8 @@ const express = require('express')
 const shortid = require('shortid')
 const helmet = require('helmet')
 const bodyParser = require('body-parser')
+const pkg = require('./package')
+
 const app = express()
 
 let ratings = []
@@ -10,7 +12,7 @@ app.use(helmet())
 app.use(bodyParser.json())
 
 app.get('/', (req, res) => {
-  res.send('Hello Lyfeee')
+  res.send(`${pkg.name}:${pkg.version}`)
 })
 
 app.get('/ratings', (req, res) => {
