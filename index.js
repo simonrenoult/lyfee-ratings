@@ -3,7 +3,7 @@ const shortid = require('shortid')
 const helmet = require('helmet')
 const bodyParser = require('body-parser')
 const pkg = require('./package')
-const store = require('./src/repositories/ratings-memory-repository')
+const store = require('./src/ratings-memory-repository')
 
 const app = express()
 
