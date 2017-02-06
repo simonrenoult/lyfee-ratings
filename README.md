@@ -5,17 +5,17 @@
 ## Install
 
 ```
-$ npm install
+$ make install
 ```
 
 ## Test
 
 ```
-$ npm test
+$ make test
 ```
 
 ## Start
 
 ```
-$ npm start
+$ make start
 ```
