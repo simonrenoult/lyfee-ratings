@@ -1,6 +1,6 @@
-exports.rating = () => {
+exports.rating = (type = 'books') => {
   return {
-    type: 'book',
+    type: type,
     rating: 7,
     name: 'Vivants'
   }

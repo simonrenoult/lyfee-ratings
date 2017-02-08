@@ -5,6 +5,7 @@ const bodyParser = require('body-parser')
 const pkg = require('./package')
 const repository = require('./src/ratings-memory-repository')
 const service = require('./src/ratings-service')({repository})
+const httpService = require('./src/ratings-http-service')(service)
 
 const app = express()
 
@@ -15,9 +16,7 @@ app.get('/', (req, res) => {
   res.send(`${pkg.name}:${pkg.version}`)
 })
 
-app.get('/ratings', (req, res) => {
-  res.status(200).send(service.findAll())
-})
+app.get('/ratings', httpService.findAll)
 
 app.get('/ratings/:id', (req, res) => {
   const id = req.params.id

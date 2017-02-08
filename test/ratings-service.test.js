@@ -4,11 +4,11 @@ const assert = require('assert')
 const ratingService = require('../src/ratings-service')
 
 describe('RatingsService', () => {
-  describe('.findAll()', () => {
+  describe('.findAll(:filters)', () => {
     it('calls repository.findAll()', () => {
-      // Given
       const repository = {findAll () {}}
       const stub = sinon.stub(repository, 'findAll')
+      stub.returns([])
 
       // When
       ratingService({repository}).findAll()
@@ -18,13 +18,57 @@ describe('RatingsService', () => {
     })
     it('returns repository.findAll(:id, :data)', () => {
       // Given
-      const repository = {findAll () { return 'fakeResult' }}
+      const repository = {findAll () { return ['fakeResult'] }}
 
       // When
       const actual = ratingService({repository}).findAll()
 
       // Then
-      assert.equal(actual, 'fakeResult')
+      assert.deepEqual(actual, ['fakeResult'])
+    })
+    it('applies filter on field "type"', () => {
+      // Given
+      const repository = {findAll () { return [{type: 'movies'}, {type: 'books'}] }}
+      const filters = {type: 'books'}
+
+      // When
+      const actual = ratingService({repository}).findAll(filters)
+
+      // Then
+      assert.equal(actual.length, 1)
+    })
+    it('applies filter on field "name"', () => {
+      // Given
+      const repository = {findAll () { return [{name: 'Mad Max'}, {name: 'Mononoke hime'}] }}
+      const filters = {name: 'Mad Max'}
+
+      // When
+      const actual = ratingService({repository}).findAll(filters)
+
+      // Then
+      assert.equal(actual.length, 1)
+    })
+    it('applies filter on field "rating"', () => {
+      // Given
+      const repository = {findAll () { return [{rating: 7.0}, {rating: 8.0}] }}
+      const filters = {rating: 7.0}
+
+      // When
+      const actual = ratingService({repository}).findAll(filters)
+
+      // Then
+      assert.equal(actual.length, 1)
+    })
+    it('applies filter on any given field', () => {
+      // Given
+      const repository = {findAll () { return [{foo: 'bar'}, {foo: 'qux'}] }}
+      const filters = {foo: 'bar'}
+
+      // When
+      const actual = ratingService({repository}).findAll(filters)
+
+      // Then
+      assert.equal(actual.length, 1)
     })
   })
 

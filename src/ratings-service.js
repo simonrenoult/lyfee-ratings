@@ -10,9 +10,11 @@ module.exports = ({repository}) => {
 }
 
 function findAll (repository) {
-  return () => {
-    return repository.findAll()
-  }
+  return (filters = {}) => repository.findAll()
+      .filter(message => Object.keys(filters)
+          .map(filterKey => message[filterKey] === filters[filterKey])
+          .reduce((previous, current) => previous && current, true)
+      )
 }
 
 function removeAll (repository) {

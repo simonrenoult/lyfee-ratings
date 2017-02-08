@@ -1,6 +1,6 @@
 const expect = require('chai').expect
-const requester = require('../helpers').requester
 const fixtures = require('./fixtures')
+const { requester } = require('../helpers')
 
 describe('GET /ratings', () => {
   it('returns 200', () => {
@@ -21,12 +21,32 @@ describe('GET /ratings', () => {
     const rating = fixtures.rating()
 
     before(() => requester.post('/ratings').send(rating))
+    after(() => requester.delete('/ratings'))
 
     it('returns the list of ratings', () => {
       return requester
         .get('/ratings')
         .expect(res => {
           expect(res.body).to.have.length.above(0)
+        })
+    })
+  })
+
+  describe('filters', () => {
+    const book = fixtures.rating()
+    const movie1 = fixtures.rating('movies')
+    const movie2 = fixtures.rating('movies')
+
+    before(() => requester.post('/ratings').send(book))
+    before(() => requester.post('/ratings').send(movie1))
+    before(() => requester.post('/ratings').send(movie2))
+    after(() => requester.delete('/ratings'))
+
+    it('works', () => {
+      return requester
+        .get('/ratings?type=books')
+        .expect(res => {
+          expect(res.body).to.have.length(1)
         })
     })
   })
