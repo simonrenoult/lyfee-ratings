@@ -25,7 +25,7 @@ install:
 .PHONY: test
 .SILENT: test
 test:
-	yarn test
+	NODE_ENV=test yarn test
 
 .PHONY: run
 .SILENT: run

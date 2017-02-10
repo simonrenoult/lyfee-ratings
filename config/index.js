@@ -9,3 +9,6 @@ module.exports = nconf
   .file({
     file: path.resolve(__dirname, `./${env}.json`)
   })
+  .defaults({
+    env: env.toLowerCase()
+  })

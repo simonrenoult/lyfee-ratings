@@ -8,12 +8,13 @@ const pkg = require('./package')
 const repository = require('./src/ratings-memory-service')
 const domain = require('./src/ratings-domain-service')(repository)
 const httpService = require('./src/ratings-http-service')(domain)
+const config = require('./config')
 
 const app = express()
 
+if (config.get('env') !== 'test') app.use(morgan('dev'))
 app.use(helmet())
 app.use(bodyParser.json())
-app.use(morgan('dev'))
 
 app.get('/', (req, res) => {
   res.json({
