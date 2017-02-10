@@ -1,6 +1,6 @@
 {
   "name": "lyfee-rating",
-  "version": "0.0.1",
+  "version": "1.0.0",
   "description": "Ratings API",
   "main": "index.js",
   "scripts": {
