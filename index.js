@@ -1,6 +1,8 @@
 const express = require('express')
 const helmet = require('helmet')
 const bodyParser = require('body-parser')
+const morgan = require('morgan')
+
 const pkg = require('./package')
 const repository = require('./src/ratings-memory-service')
 const domain = require('./src/ratings-domain-service')(repository)
@@ -10,6 +12,7 @@ const app = express()
 
 app.use(helmet())
 app.use(bodyParser.json())
+app.use(morgan('dev'))
 
 app.get('/', (req, res) => res.send(`${pkg.name}:${pkg.version}`))
 app.get('/ratings', httpService.findAll)
