@@ -103,11 +103,11 @@ describe('RatingsDomainService', () => {
     it('calls repository.insert(:rating)', () => {
       // Given
       const repository = {insert () {}}
-      const rating = 'fakeRating'
+      const data = fixtures.rating()
       const stub = sinon.stub(repository, 'insert')
 
       // When
-      ratingService(repository).insert(rating)
+      ratingService(repository).insert(data)
 
       // Then
       sinon.assert.calledOnce(stub)
@@ -115,13 +115,46 @@ describe('RatingsDomainService', () => {
     it('returns repository.insert(:id, :data)', () => {
       // Given
       const repository = {insert () { return 'fakeResult' }}
-      const data = 'fakeData'
+      const data = fixtures.rating()
 
       // When
       const actual = ratingService(repository).insert(data)
 
       // Then
       assert.equal(actual, 'fakeResult')
+    })
+    it('throws an error when rating is missing', () => {
+        // Given
+        const repository = {insert () { return 'fakeResult' }}
+        const data = fixtures.rating()
+        delete data.rating
+
+        // When
+        expect(() => {
+          ratingService(repository).insert(data)
+        }).to.throw(Error)
+    })
+    it('throws an error when type is missing', () => {
+        // Given
+        const repository = {insert () { return 'fakeResult' }}
+        const data = fixtures.rating()
+        delete data.type
+
+        // When
+        expect(() => {
+          ratingService(repository).insert(data)
+        }).to.throw(Error)
+    })
+    it('throws an error when name is missing', () => {
+        // Given
+        const repository = {insert () { return 'fakeResult' }}
+        const data = fixtures.rating()
+        delete data.name
+
+        // When
+        expect(() => {
+          ratingService(repository).insert(data)
+        }).to.throw(Error)
     })
   })
 
@@ -213,7 +246,7 @@ describe('RatingsDomainService', () => {
 
         // When
         expect(() => {
-          expratingService(repository).update(id, data)
+          ratingService(repository).update(id, data)
         }).to.throw(Error)
     })
     it('throws an error when type is missing', () => {
@@ -225,7 +258,7 @@ describe('RatingsDomainService', () => {
 
         // When
         expect(() => {
-          expratingService(repository).update(id, data)
+          ratingService(repository).update(id, data)
         }).to.throw(Error)
     })
     it('throws an error when name is missing', () => {
@@ -237,7 +270,7 @@ describe('RatingsDomainService', () => {
 
         // When
         expect(() => {
-          expratingService(repository).update(id, data)
+          ratingService(repository).update(id, data)
         }).to.throw(Error)
     })
   })

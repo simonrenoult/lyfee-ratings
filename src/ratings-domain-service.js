@@ -24,8 +24,11 @@ function removeAll (repository) {
 }
 
 function insert (repository) {
-  return (rating) => {
-    return repository.insert(rating)
+  return (data) => {
+    if (!data.rating) throw new Error('missing rating')
+    if (!data.type) throw new Error('missing type')
+    if (!data.name) throw new Error('missing name')
+    return repository.insert(data)
   }
 }
 

@@ -37,8 +37,14 @@ function removeAll (domain) {
 function insert (domain) {
   return (req, res, next) => {
     const id = shortid.generate()
-    domain.insert(Object.assign(req.body, {id}))
-    res.location(`/ratings/${id}`).sendStatus(201)
+
+    try {
+      domain.insert(Object.assign(req.body, {id}))
+    } catch (e) {
+      return res.status(400).send(e)
+    }
+    
+    return res.location(`/ratings/${id}`).sendStatus(201)
   }
 }
 
