@@ -1,6 +1,6 @@
 const expect = require('chai').expect
 const fixtures = require('./fixtures')
-const RatingsMemoryStore = require('../src/ratings-memory-repository')
+const RatingsMemoryStore = require('../src/ratings-memory-service')
 
 describe('RatingsMemoryStore', () => {
   beforeEach(() => {
