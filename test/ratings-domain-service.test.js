@@ -125,36 +125,36 @@ describe('RatingsDomainService', () => {
     })
     it('throws an error when rating is missing', () => {
         // Given
-        const repository = {insert () { return 'fakeResult' }}
-        const data = fixtures.rating()
-        delete data.rating
+      const repository = {insert () { return 'fakeResult' }}
+      const data = fixtures.rating()
+      delete data.rating
 
         // When
-        expect(() => {
-          ratingService(repository).insert(data)
-        }).to.throw(Error)
+      expect(() => {
+        ratingService(repository).insert(data)
+      }).to.throw(Error)
     })
     it('throws an error when type is missing', () => {
         // Given
-        const repository = {insert () { return 'fakeResult' }}
-        const data = fixtures.rating()
-        delete data.type
+      const repository = {insert () { return 'fakeResult' }}
+      const data = fixtures.rating()
+      delete data.type
 
         // When
-        expect(() => {
-          ratingService(repository).insert(data)
-        }).to.throw(Error)
+      expect(() => {
+        ratingService(repository).insert(data)
+      }).to.throw(Error)
     })
     it('throws an error when name is missing', () => {
         // Given
-        const repository = {insert () { return 'fakeResult' }}
-        const data = fixtures.rating()
-        delete data.name
+      const repository = {insert () { return 'fakeResult' }}
+      const data = fixtures.rating()
+      delete data.name
 
         // When
-        expect(() => {
-          ratingService(repository).insert(data)
-        }).to.throw(Error)
+      expect(() => {
+        ratingService(repository).insert(data)
+      }).to.throw(Error)
     })
   })
 
@@ -239,39 +239,39 @@ describe('RatingsDomainService', () => {
     })
     it('throws an error when rating is missing', () => {
         // Given
-        const repository = {update () { return 'fakeResult' }}
-        const id = 'fakeId'
-        const data = fixtures.rating()
-        delete data.rating
+      const repository = {update () { return 'fakeResult' }}
+      const id = 'fakeId'
+      const data = fixtures.rating()
+      delete data.rating
 
         // When
-        expect(() => {
-          ratingService(repository).update(id, data)
-        }).to.throw(Error)
+      expect(() => {
+        ratingService(repository).update(id, data)
+      }).to.throw(Error)
     })
     it('throws an error when type is missing', () => {
         // Given
-        const repository = {update () { return 'fakeResult' }}
-        const id = 'fakeId'
-        const data = fixtures.rating()
-        delete data.type
+      const repository = {update () { return 'fakeResult' }}
+      const id = 'fakeId'
+      const data = fixtures.rating()
+      delete data.type
 
         // When
-        expect(() => {
-          ratingService(repository).update(id, data)
-        }).to.throw(Error)
+      expect(() => {
+        ratingService(repository).update(id, data)
+      }).to.throw(Error)
     })
     it('throws an error when name is missing', () => {
         // Given
-        const repository = {update () { return 'fakeResult' }}
-        const id = 'fakeId'
-        const data = fixtures.rating()
-        delete data.name
+      const repository = {update () { return 'fakeResult' }}
+      const id = 'fakeId'
+      const data = fixtures.rating()
+      delete data.name
 
         // When
-        expect(() => {
-          ratingService(repository).update(id, data)
-        }).to.throw(Error)
+      expect(() => {
+        ratingService(repository).update(id, data)
+      }).to.throw(Error)
     })
   })
 })

@@ -41,3 +41,8 @@ start:
 .SILENT: watch
 watch:
 	yarn start:watch
+
+.PHONY: lint
+.SILENT: lint
+lint:
+	yarn lint

@@ -51,22 +51,23 @@ function insert (domain) {
 
 function remove (domain) {
   return (req, res, next) => {
+    const id = req.params.id
     return domain.remove(id)
   }
 }
 
 function update (domain) {
   return (req, res, next) => {
-      const id = req.params.id
-      const rating = domain.find(id)
-      if (!rating) return next(boom.notFound())
+    const id = req.params.id
+    const rating = domain.find(id)
+    if (!rating) return next(boom.notFound())
 
-      try {
-        domain.update(id, req.body)
-      } catch (e) {
-        return next(boom.badRequest(e.message))
-      }
+    try {
+      domain.update(id, req.body)
+    } catch (e) {
+      return next(boom.badRequest(e.message))
+    }
 
-      return res.location(`/ratings/${id}`).sendStatus(204)
+    return res.location(`/ratings/${id}`).sendStatus(204)
   }
 }
