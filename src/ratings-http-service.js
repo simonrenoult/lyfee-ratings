@@ -1,4 +1,5 @@
 const shortid = require('shortid')
+const boom = require('boom')
 
 module.exports = domain => {
   return {
@@ -22,7 +23,7 @@ function find (domain) {
   return (req, res, next) => {
     const id = req.params.id
     const rating = domain.find(id)
-    if (!rating) return res.status(404).send()
+    if (!rating) return next(boom.notFound())
     res.send(rating)
   }
 }
@@ -41,9 +42,9 @@ function insert (domain) {
     try {
       domain.insert(Object.assign(req.body, {id}))
     } catch (e) {
-      return res.status(400).send(e)
+      return next(boom.badRequest(e.message))
     }
-    
+
     return res.location(`/ratings/${id}`).sendStatus(201)
   }
 }
@@ -58,12 +59,12 @@ function update (domain) {
   return (req, res, next) => {
       const id = req.params.id
       const rating = domain.find(id)
-      if (!rating) return res.sendStatus(404)
+      if (!rating) return next(boom.notFound())
 
       try {
         domain.update(id, req.body)
       } catch (e) {
-        return res.status(400).send(e)
+        return next(boom.badRequest(e.message))
       }
 
       return res.location(`/ratings/${id}`).sendStatus(204)
