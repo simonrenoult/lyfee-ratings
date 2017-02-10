@@ -23,6 +23,13 @@ function removeAll (repository) {
   }
 }
 
+function remove (repository) {
+  return (id) => {
+    const removedItemsCount = repository.remove(id)
+    if (removedItemsCount === 0) throw new Error('element does not exist')
+  }
+}
+
 function insert (repository) {
   return (data) => {
     if (!data.rating) throw new Error('missing rating')
@@ -35,12 +42,6 @@ function insert (repository) {
 function find (repository) {
   return (id) => {
     return repository.find(id)
-  }
-}
-
-function remove (repository) {
-  return (id) => {
-    return repository.remove(id)
   }
 }
 

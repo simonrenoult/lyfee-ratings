@@ -19,7 +19,8 @@ module.exports = {
 
   remove (id) {
     const ratingIndex = store.findIndex(r => r.id === id)
-    store.splice(ratingIndex, 1)
+    const removedElements = store.splice(ratingIndex, 1)
+    return removedElements.length
   },
 
   update (id, data) {

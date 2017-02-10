@@ -197,20 +197,18 @@ describe('RatingsDomainService', () => {
       // Then
       sinon.assert.calledOnce(stub)
     })
-    it('returns repository.remove(:id, :data)', () => {
+    it('returns throws an error when repository.remove(:id) returns 0', () => {
       // Given
-      const repository = {remove () { return 'fakeResult' }}
+      const repository = {remove () { return 0 }}
       const id = 'fakeId'
-      const data = 'fakeData'
-
-      // When
-      const actual = ratingService(repository).remove(id, data)
 
       // Then
-      assert.equal(actual, 'fakeResult')
+      expect(() => {
+        // When
+        ratingService(repository).remove(id)
+      }).to.throw(Error)
     })
   })
-
   describe('.update(:id, :data)', () => {
     it('calls repository.update(:id, :data)', () => {
       // Given

@@ -52,7 +52,12 @@ function insert (domain) {
 function remove (domain) {
   return (req, res, next) => {
     const id = req.params.id
-    return domain.remove(id)
+    try {
+      domain.remove(id)
+    } catch (e) {
+      return next(boom.notFound())
+    }
+    return res.status(204).send()
   }
 }
 

@@ -2,6 +2,7 @@ const requester = require('../helpers').requester
 const fixtures = require('./fixtures')
 
 describe('POST /ratings', () => {
+  after(() => requester.delete('/ratings'))
   it('returns 201', () => {
     return requester
       .post('/ratings')

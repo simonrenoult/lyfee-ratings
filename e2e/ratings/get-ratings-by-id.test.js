@@ -16,6 +16,7 @@ describe('GET /ratings/:id', () => {
       location = res.headers['location']
       id = location.match(/\/ratings\/(.+)/)[1]
     }))
+    after(() => requester.delete('/ratings'))
 
     it('returns 200', () => {
       return requester.get(location).expect(200)

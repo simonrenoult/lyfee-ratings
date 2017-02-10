@@ -16,6 +16,7 @@ describe('PUT /ratings/:id', () => {
       location = res.headers.location
       id = location.match(/\/ratings\/(.+)/)[1]
     }))
+    after(() => requester.delete('/ratings'))
 
     context('when the field rating is missing', () => {
       const rating = fixtures.rating()
