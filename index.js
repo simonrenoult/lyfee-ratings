@@ -14,7 +14,13 @@ app.use(helmet())
 app.use(bodyParser.json())
 app.use(morgan('dev'))
 
-app.get('/', (req, res) => res.send(`${pkg.name}:${pkg.version}`))
+app.get('/', (req, res) => {
+  res.json({
+    name: pkg.name,
+    version: pkg.version
+  })
+})
+
 app.get('/ratings', httpService.findAll)
 app.get('/ratings/:id', httpService.find)
 app.put('/ratings/:id', httpService.update)

@@ -7,9 +7,4 @@ describe('GET /', () => {
       .get('/')
       .expect(200)
   })
-  it('returns "<pkg-name>:<pkg-version>"', () => {
-    return requester
-      .get('/')
-      .expect(`${pkg.name}:${pkg.version}`)
-  })
 })
