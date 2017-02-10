@@ -36,3 +36,8 @@ run:
 .SILENT: start
 start:
 	yarn start
+
+.PHONY: watch
+.SILENT: watch
+watch:
+	yarn start:watch
