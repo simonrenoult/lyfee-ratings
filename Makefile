@@ -12,8 +12,8 @@ help:
 	echo
 	echo "  help              print this help"
 	echo "  install           install dependencies (using yarn)"
-	echo "  test              run linter, unit and integration tests"
-	echo "  start             shortcut for start-container"
+	echo "  test              run linter, unit and end-to-end tests"
+	echo "  start             start the server"
 	echo "  run               alias for start"
 	echo
 
