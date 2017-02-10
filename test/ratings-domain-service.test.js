@@ -1,7 +1,7 @@
 const sinon = require('sinon')
 const assert = require('assert')
 
-const ratingService = require('../src/ratings-service')
+const ratingService = require('../src/ratings-domain-service')
 
 describe('RatingsService', () => {
   describe('.findAll(:filters)', () => {
