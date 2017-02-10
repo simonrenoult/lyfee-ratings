@@ -43,6 +43,9 @@ function remove (repository) {
 
 function update (repository) {
   return (id, data) => {
+    if (!data.rating) throw new Error('missing rating')
+    if (!data.type) throw new Error('missing type')
+    if (!data.name) throw new Error('missing name')
     return repository.update(id, data)
   }
 }

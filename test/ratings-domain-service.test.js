@@ -1,7 +1,10 @@
 const sinon = require('sinon')
 const assert = require('assert')
+const chai = require('chai')
+const fixtures = require('./fixtures')
 
 const ratingService = require('../src/ratings-domain-service')
+const expect = chai.expect
 
 describe('RatingsDomainService', () => {
   describe('.findAll(:filters)', () => {
@@ -180,7 +183,7 @@ describe('RatingsDomainService', () => {
       // Given
       const repository = {update () {}}
       const id = 'fakeId'
-      const data = 'fakeData'
+      const data = fixtures.rating()
       const stub = sinon.stub(repository, 'update')
 
       // When
@@ -193,13 +196,49 @@ describe('RatingsDomainService', () => {
       // Given
       const repository = {update () { return 'fakeResult' }}
       const id = 'fakeId'
-      const data = 'fakeData'
+      const data = fixtures.rating()
 
       // When
       const actual = ratingService(repository).update(id, data)
 
       // Then
       assert.equal(actual, 'fakeResult')
+    })
+    it('throws an error when rating is missing', () => {
+        // Given
+        const repository = {update () { return 'fakeResult' }}
+        const id = 'fakeId'
+        const data = fixtures.rating()
+        delete data.rating
+
+        // When
+        expect(() => {
+          expratingService(repository).update(id, data)
+        }).to.throw(Error)
+    })
+    it('throws an error when type is missing', () => {
+        // Given
+        const repository = {update () { return 'fakeResult' }}
+        const id = 'fakeId'
+        const data = fixtures.rating()
+        delete data.type
+
+        // When
+        expect(() => {
+          expratingService(repository).update(id, data)
+        }).to.throw(Error)
+    })
+    it('throws an error when name is missing', () => {
+        // Given
+        const repository = {update () { return 'fakeResult' }}
+        const id = 'fakeId'
+        const data = fixtures.rating()
+        delete data.name
+
+        // When
+        expect(() => {
+          expratingService(repository).update(id, data)
+        }).to.throw(Error)
     })
   })
 })

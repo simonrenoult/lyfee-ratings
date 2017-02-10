@@ -54,12 +54,12 @@ function update (domain) {
       const rating = domain.find(id)
       if (!rating) return res.sendStatus(404)
 
-      if (!req.body.rating) return res.sendStatus(400)
-      if (!req.body.type) return res.sendStatus(400)
-      if (!req.body.name) return res.sendStatus(400)
+      try {
+        domain.update(id, req.body)
+      } catch (e) {
+        return res.status(400).send(e)
+      }
 
-      domain.update(id, req.body)
-
-      res.location(`/ratings/${id}`).sendStatus(204)
+      return res.location(`/ratings/${id}`).sendStatus(204)
   }
 }
