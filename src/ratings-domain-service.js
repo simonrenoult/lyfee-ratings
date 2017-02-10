@@ -1,4 +1,4 @@
-module.exports = ({repository}) => {
+module.exports = (repository) => {
   return {
     findAll: findAll(repository),
     insert: insert(repository),

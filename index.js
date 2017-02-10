@@ -4,7 +4,7 @@ const helmet = require('helmet')
 const bodyParser = require('body-parser')
 const pkg = require('./package')
 const repository = require('./src/ratings-memory-service')
-const domain = require('./src/ratings-domain-service')({repository})
+const domain = require('./src/ratings-domain-service')(repository)
 const httpService = require('./src/ratings-http-service')(domain)
 
 const app = express()

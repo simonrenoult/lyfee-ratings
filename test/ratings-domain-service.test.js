@@ -11,7 +11,7 @@ describe('RatingsService', () => {
       stub.returns([])
 
       // When
-      ratingService({repository}).findAll()
+      ratingService(repository).findAll()
 
       // Then
       sinon.assert.calledOnce(stub)
@@ -21,7 +21,7 @@ describe('RatingsService', () => {
       const repository = {findAll () { return ['fakeResult'] }}
 
       // When
-      const actual = ratingService({repository}).findAll()
+      const actual = ratingService(repository).findAll()
 
       // Then
       assert.deepEqual(actual, ['fakeResult'])
@@ -32,7 +32,7 @@ describe('RatingsService', () => {
       const filters = {type: 'books'}
 
       // When
-      const actual = ratingService({repository}).findAll(filters)
+      const actual = ratingService(repository).findAll(filters)
 
       // Then
       assert.equal(actual.length, 1)
@@ -43,7 +43,7 @@ describe('RatingsService', () => {
       const filters = {name: 'Mad Max'}
 
       // When
-      const actual = ratingService({repository}).findAll(filters)
+      const actual = ratingService(repository).findAll(filters)
 
       // Then
       assert.equal(actual.length, 1)
@@ -54,7 +54,7 @@ describe('RatingsService', () => {
       const filters = {rating: 7.0}
 
       // When
-      const actual = ratingService({repository}).findAll(filters)
+      const actual = ratingService(repository).findAll(filters)
 
       // Then
       assert.equal(actual.length, 1)
@@ -65,7 +65,7 @@ describe('RatingsService', () => {
       const filters = {foo: 'bar'}
 
       // When
-      const actual = ratingService({repository}).findAll(filters)
+      const actual = ratingService(repository).findAll(filters)
 
       // Then
       assert.equal(actual.length, 1)
@@ -79,7 +79,7 @@ describe('RatingsService', () => {
       const stub = sinon.stub(repository, 'removeAll')
 
       // When
-      ratingService({repository}).removeAll()
+      ratingService(repository).removeAll()
 
       // Then
       sinon.assert.calledOnce(stub)
@@ -89,7 +89,7 @@ describe('RatingsService', () => {
       const repository = {removeAll () { return 'fakeResult' }}
 
       // When
-      const actual = ratingService({repository}).removeAll()
+      const actual = ratingService(repository).removeAll()
 
       // Then
       assert.equal(actual, 'fakeResult')
@@ -104,7 +104,7 @@ describe('RatingsService', () => {
       const stub = sinon.stub(repository, 'insert')
 
       // When
-      ratingService({repository}).insert(rating)
+      ratingService(repository).insert(rating)
 
       // Then
       sinon.assert.calledOnce(stub)
@@ -115,7 +115,7 @@ describe('RatingsService', () => {
       const data = 'fakeData'
 
       // When
-      const actual = ratingService({repository}).insert(data)
+      const actual = ratingService(repository).insert(data)
 
       // Then
       assert.equal(actual, 'fakeResult')
@@ -130,7 +130,7 @@ describe('RatingsService', () => {
       const stub = sinon.stub(repository, 'find')
 
       // When
-      ratingService({repository}).find(id)
+      ratingService(repository).find(id)
 
       // Then
       sinon.assert.calledOnce(stub)
@@ -141,7 +141,7 @@ describe('RatingsService', () => {
       const id = 'fakeId'
 
       // When
-      const actual = ratingService({repository}).find(id)
+      const actual = ratingService(repository).find(id)
 
       // Then
       assert.equal(actual, 'fakeResult')
@@ -156,7 +156,7 @@ describe('RatingsService', () => {
       const stub = sinon.stub(repository, 'remove')
 
       // When
-      ratingService({repository}).remove(id)
+      ratingService(repository).remove(id)
 
       // Then
       sinon.assert.calledOnce(stub)
@@ -168,7 +168,7 @@ describe('RatingsService', () => {
       const data = 'fakeData'
 
       // When
-      const actual = ratingService({repository}).remove(id, data)
+      const actual = ratingService(repository).remove(id, data)
 
       // Then
       assert.equal(actual, 'fakeResult')
@@ -184,7 +184,7 @@ describe('RatingsService', () => {
       const stub = sinon.stub(repository, 'update')
 
       // When
-      ratingService({repository}).update(id, data)
+      ratingService(repository).update(id, data)
 
       // Then
       sinon.assert.calledOnce(stub)
@@ -196,7 +196,7 @@ describe('RatingsService', () => {
       const data = 'fakeData'
 
       // When
-      const actual = ratingService({repository}).update(id, data)
+      const actual = ratingService(repository).update(id, data)
 
       // Then
       assert.equal(actual, 'fakeResult')
