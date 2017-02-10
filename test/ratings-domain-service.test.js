@@ -3,7 +3,7 @@ const assert = require('assert')
 
 const ratingService = require('../src/ratings-domain-service')
 
-describe('RatingsService', () => {
+describe('RatingsDomainService', () => {
   describe('.findAll(:filters)', () => {
     it('calls repository.findAll()', () => {
       const repository = {findAll () {}}
